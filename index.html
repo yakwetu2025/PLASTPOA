@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlastPoa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 50px;
+        }
+        .menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 100vh;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .menu a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 10px;
+            background-color: #FF7D25;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu a:hover {
+            background-color: green;
+            color: white;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+                overflow: hidden;
+                max-height: 0;
+            }
+            .menu a {
+                padding: 10px;
+                width: 100%;
+            }
+            .menu.show {
+                max-height: 300px; /* Adjust this value based on the number of links */
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        .cover {
+            position: relative;
+            background-image: url('cover.png');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .cover::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .cover h1 {
+            position: relative;
+            font-size: 36px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Earn from Waste Section */
+        .earn-from-waste {
+            padding: 40px 20px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .earn-from-waste .text {
+            flex: 1;
+            padding: 20px;
+            max-width: 500px;
+        }
+        .earn-from-waste h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .earn-from-waste h2 span {
+            color: #336699;
+            font-weight: bold;
+        }
+        .earn-from-waste p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .earn-from-waste p span {
+            color: #FF7D25;
+            font-weight: bold;
+        }
+        .earn-from-waste .image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .earn-from-waste .image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .earn-from-waste .image img:hover {
+            transform: scale(1.05);
+        }
+        .earn-from-waste .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .earn-from-waste .buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            background-color: #336699;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .earn-from-waste .buttons a:hover {
+            background-color: #254a73;
+        }
+        @media (max-width: 768px) {
+            .earn-from-waste {
+                flex-direction: column;
+                text-align: center;
+            }
+            .earn-from-waste .image {
+                margin-bottom: 20px;
+            }
+            .earn-from-waste .buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="logo.png" alt="PlastPoa Logo">
+        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        <div class="menu">
+            <a href="#solution">Solution</a>
+            <a href="#suppliers">Supplier</a>
+            <a href="#materials">Materials</a>
+            <a href="#buyers">Buyers</a>
+            <a href="#technology">Technology</a>
+            <a href="#impact">Impact</a>
+            <a href="https://wa.me/0697935571">Join</a>
+        </div>
+    </div>
+
+    <div class="cover">
+        <h1>Driving the Plastic Circular Economy in Tanzania</h1>
+    </div>
+
+    <script>
+        const toggleButton = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+    <!-- Earn from Waste Section -->
+    <section id="solution">
+    <div class="earn-from-waste" id="earn-from-waste">
+        <div class="text">
+            <h2>Earn from Your Waste without Leaving <span>SMS Chats</span> or <span>WhatsApp</span></h2>
+            <p>Join the PlastPoa platform and start earning by recycling plastic waste. With seamless interaction through <span>SMS</span> or <span>WhatsApp</span>, you can access a network of buyers and sellers while tracking your eco-impact.</p>
+            <div class="buttons">
+                <a href="sms://join">SMS JOIN</a>
+                <a href="https://wa.me/0697935571">WHATSAPP JOIN</a>
+            </div>
+        </div>
+        <div class="image">
+            <img src="Whatsapp.jpg" alt="Whatsapp">
+            <img src="SMS.jpg" alt="SMS">
+        </div>
+    </div>
+
+
+
+
+<!-- Earn in 5 Steps Section -->
+ <section id="suppliers">
+<div class="earn-steps-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: url('supplier.jpg') no-repeat center center; background-size: cover; position: relative; padding: 60px 20px;">
+    <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
+    
+    <div class="steps-container" style="z-index: 1; color: white; text-align: center;">
+        <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 40px;">Earn in 5 Steps</h2>
+
+        <!-- Step 1 -->
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                1
+            </div>
+            <p style="font-size: 18px; margin-top: 10px;">State Your Category</p>
+        </div>
+
+        <div class="line" style="width: 3px; height: 40px; background-color: #FF7D25; margin: 20px auto;"></div>
+
+        <!-- Step 2 -->
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                2
+            </div>
+            <p style="font-size: 18px; margin-top: 10px;">Sign Up</p>
+        </div>
+
+        <div class="line" style="width: 3px; height: 40px; background-color: #FF7D25; margin: 20px auto;"></div>
+
+        <!-- Step 3 -->
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                3
+            </div>
+            <p style="font-size: 18px; margin-top: 10px;">Get Bahari Champion ID</p>
+        </div>
+
+        <div class="line" style="width: 3px; height: 40px; background-color: #FF7D25; margin: 20px auto;"></div>
+
+        <!-- Step 4 -->
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                4
+            </div>
+            <p style="font-size: 18px; margin-top: 10px;">Order Collection Tools</p>
+        </div>
+
+        <div class="line" style="width: 3px; height: 40px; background-color: #FF7D25; margin: 20px auto;"></div>
+
+        <!-- Step 5 -->
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                5
+            </div>
+            <p style="font-size: 18px; margin-top: 10px;">Schedule Pick Up & Earn</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .earn-steps-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url('supplier.jpg') no-repeat center center;
+        background-size: cover;
+        position: relative;
+        padding: 60px 20px;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* dark transparent overlay */
+    }
+
+    .steps-container {
+        z-index: 1;
+        color: white;
+        text-align: center;
+    }
+
+    .steps-container h2 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .step-number {
+        background-color: #FF7D25;
+        color: white;
+        font-size: 24px;
+        padding: 12px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .step p {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .line {
+        width: 3px;
+        height: 40px;
+        background-color: #FF7D25;
+        margin: 20px auto;
+    }
+
+    @media (max-width: 768px) {
+        .earn-steps-section {
+            padding: 40px 20px;
+        }
+
+        .steps-container h2 {
+            font-size: 28px;
+        }
+
+        .step p {
+            font-size: 16px;
+        }
+    }
+</style>
+
+
+
+
+
+<!-- New Section: We Collect Almost Every Kind of Plastic -->
+<section id="materials">
+<div class="plastic-collection-section" style="background-color: #336699;">
+    <div class="plastic-collection-header">
+        <h2 style="color: white;">Every Plastic Gets a Chance</h2>
+        <p style="color: white;">Our platform accepts a wide range of plastic waste. Below is a showcase of the types of plastic materials we collect for recycling.</p>
+    </div>
+    <div class="plastic-grid">
+        <div class="plastic-image">
+            <img src="agrochem.jpeg" alt="Agrochem Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="caps.jpg" alt="Caps Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="cups.jpg" alt="Cups Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="food.jpg" alt="Food Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="energy.jpg" alt="Energy Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="box.jpg" alt="Box Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="shoes.jpg" alt="Shoes Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="straws.png" alt="Straws Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="medics.jpg" alt="Medics Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="waterbottle.png" alt="Water Bottle Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="soda.jpg" alt="Soda Plastic">
+        </div>
+        <div class="plastic-image">
+            <img src="slippers.jpeg" alt="Slippers Plastic">
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Plastic Collection Section Styles */
+    .plastic-collection-section {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .plastic-collection-header h2 {
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .plastic-collection-header p {
+        font-size: 16px;
+        color: white;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+
+    .plastic-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* 6 items per row */
+        gap: 10px; /* Smaller gap between images */
+        justify-items: center;
+    }
+
+    .plastic-image img {
+        width: 100%;
+        height: 100%;
+        max-width: 150px; /* Smaller width for compact layout */
+        max-height: 150px; /* Smaller height */
+        object-fit: cover;
+        border-radius: 10px;
+        border: 5px solid #fff;
+    }
+
+    @media (max-width: 768px) {
+        .plastic-grid {
+            grid-template-columns: repeat(3, 1fr); /* 3 items per row on mobile */
+        }
+
+        .plastic-image img {
+            max-width: 130px; /* Even smaller images on mobile */
+            max-height: 130px;
+        }
+    }
+</style>
+
+
+
+
+
+<!-- Empower Plastic Waste Buyers Section -->
+ <section id="buyers">
+<div class="empower-buyers-section" style="display: flex; justify-content: center; align-items: center; background: url('buyer.jpg') no-repeat center center; background-size: cover; position: relative; padding: 60px 20px;">
+    <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
+    
+    <div class="buyer-steps" style="flex: 1; color: white; z-index: 1; text-align: center;">
+        <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 30px;">Empower Plastic Waste Buyers</h2>
+        <p style="font-size: 18px; margin-bottom: 40px;">Manage waste better with insights and compliance tools.</p>
+        
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                1
+            </div>
+            <p style="font-size: 18px; margin-left: 10px;">Seamless Ordering</p>
+        </div>
+        
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                2
+            </div>
+            <p style="font-size: 18px; margin-left: 10px;">Supply Chain Visibility</p>
+        </div>
+        
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                3
+            </div>
+            <p style="font-size: 18px; margin-left: 10px;">Impact Visibility</p>
+        </div>
+        
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                4
+            </div>
+            <p style="font-size: 18px; margin-left: 10px;">ESG Compliance</p>
+        </div>
+        
+        <div class="step">
+            <div class="step-number" style="background-color: #FF7D25; color: white; font-size: 24px; padding: 12px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                5
+            </div>
+            <p style="font-size: 18px; margin-left: 10px;">CSR Compliance</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .empower-buyers-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url('buyer.jpg') no-repeat center center;
+        background-size: cover;
+        position: relative;
+        padding: 60px 20px;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* dark transparent overlay */
+    }
+
+    .buyer-steps {
+        flex: 1;
+        color: white;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .buyer-steps h2 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .buyer-steps p {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+    .step-number {
+        background-color: #FF7D25;
+        color: white;
+        font-size: 24px;
+        padding: 12px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .step p {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .empower-buyers-section {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .buyer-image {
+            margin-bottom: 30px;
+        }
+
+        .buyer-steps {
+            text-align: center;
+        }
+    }
+</style>
+
+
+<div class="technology-section" style="padding: 60px 20px;">
+ <section id="technology">
+    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 40px; text-align: center; color: #336699;">Powered by Innovative and Emerging Technology</h2>
+
+    <div class="technology-grid">
+        <div class="technology-card" style="border-top: 5px solid #FF7D25;">
+            <h3>AI Route Optimization</h3>
+            <p>Leveraging advanced AI algorithms to dynamically optimize delivery routes, reducing travel time, fuel consumption, and operational costs. This intelligent system adapts to real-time traffic conditions, ensuring efficient and timely deliveries while minimizing environmental impact.</p>
+        </div>
+
+        <div class="technology-card" style="border-top: 5px solid #336699;">
+ <section id="technology">
+            <h3>Communication APIs</h3>
+            <p>Integrating APIs for real-time tracking, instant updates, and interaction between drivers, dispatchers, and customers via WhatsApp and SMS. This fosters transparency and enhances communication throughout the delivery process, leading to improved customer satisfaction.</p>
+        </div>
+
+        <div class="technology-card" style="border-top: 5px solid #FF7D25;">
+            <h3>Secure Payments APIs</h3>
+            <p>Facilitating secure and efficient transactions through integrated payment gateways, ensuring seamless financial operations and enhancing customer trust. This streamlined payment process provides a secure and convenient experience for all parties involved.</p>
+        </div>
+
+        <div class="technology-card" style="border-top: 5px solid #336699;">
+            <h3>Sustainable Logistics</h3>
+            <p>Promoting eco-friendly practices through the use of electric vehicles (EVs), optimized gas consumption, and route optimization, significantly reducing our carbon footprint. We are committed to minimizing environmental impact and promoting sustainable delivery practices.</p>
+        </div>
+
+        <div class="technology-card" style="border-top: 5px solid #FF7D25;">
+            <h3>Cloud Storage</h3>
+            <p>Utilizing scalable and secure cloud storage solutions for efficient data management, ensuring data availability, integrity, and business continuity. This infrastructure enables seamless access to critical information from anywhere, at any time.</p>
+        </div>
+
+        <div class="technology-card" style="border-top: 5px solid #336699;">
+            <h3>Data Entry APIs</h3>
+            <p>Automating data entry processes through dedicated APIs, minimizing manual input, reducing errors, and improving data accuracy. This streamlines workflows and frees up valuable resources for other critical tasks.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.technology-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Media query for smaller screens - revert to responsive behavior */
+@media (max-width: 992px) { /* Adjust breakpoint if needed */
+    .technology-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+.technology-card {
+    background-color: white;
+    padding: 20px; /* Slightly increased padding */
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: justify;
+}
+
+.technology-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.technology-card h3 {
+    font-size: 1.2rem; /* Use relative units */
+    margin-bottom: 10px; /* Slightly increased margin */
+    color: #336699;
+    text-align: center;
+}
+
+.technology-card p {
+    font-size: 1rem; /* Use relative units */
+    color: #333;
+    line-height: 1.5; /* Slightly increased line height */
+}
+
+/* Tab Colors */
+.technology-card:nth-child(odd) {
+    border-top-color: #FF7D25;
+}
+
+.technology-card:nth-child(even) {
+    border-top-color: #336699;
+}
+</style>
+
+
+
+    <!-- Ocean Vision Section -->
+ <section id="impact">
+    <section class="ocean-vision">
+        <div class="ocean-overlay">
+            <h2>We have a bold vision for our ocean</h2>
+            <p>Achieve <strong>50% plastic leakage mitigation</strong> for Tanzania's Indian Ocean coastal line by 2035</p>
+        </div>
+    </section>
+
+    <style>
+        /* Ocean Vision Section Styles */
+        .ocean-vision {
+            position: relative;
+            background-image: url('ocean.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .ocean-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .ocean-overlay h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .ocean-overlay p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .ocean-overlay h2 {
+                font-size: 24px;
+            }
+            .ocean-overlay p {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+</body>
+
+
+<!-- Footer Section -->
+<div class="footer">
+    <div class="footer-container">
+        <div class="footer-about">
+            <h3>About PlastPoa</h3>
+            <p>We are dedicated to creating sustainable solutions for plastic waste management in Tanzania, focusing on the mitigation of plastic leakage in coastal areas.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <a href="#solution">Solution</a>
+                <a href="#suppliers">Supplier</a>
+                <a href="#materials">Materials</a>
+                <a href="#buyers">Buyers</a>
+                <a href="#technology">Technology</a>
+                <a href="#impact">Impact</a>
+                <a href="https://wa.me/0697935571">Join</a>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p><strong>Email:</strong> contact@plastpoa.com</p>
+            <p><strong>Phone:</strong> +255 123 456 789</p>
+            <p><strong>Address:</strong> 123 Ocean Road, Dar es Salaam, Tanzania</p>
+        </div>
+
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank" class="social-icon">Facebook</a>
+                <a href="https://twitter.com" target="_blank" class="social-icon">Twitter</a>
+                <a href="https://instagram.com" target="_blank" class="social-icon">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 PlastPoa. All Rights Reserved.</p>
+    </div>
+</div>
+
+<style>
+    /* Footer Section Styles */
+    .footer {
+        background-color: #2c3e50;
+        color: white;
+        padding: 50px 20px;
+        text-align: left;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .footer-about, .footer-links, .footer-contact, .footer-social {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+    }
+
+    .footer h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .footer p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .footer-links ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin: 8px 0;
+    }
+
+    .footer-links a {
+        text-decoration: none;
+        color: #ff7d25;
+        font-size: 14px;
+        transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: white;
+    }
+
+    .footer-social .social-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .footer-social .social-icon {
+        text-decoration: none;
+        color: #ff7d25;
+        font-size: 14px;
+        transition: color 0.3s;
+    }
+
+    .footer-social .social-icon:hover {
+        color: white;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        border-top: 1px solid #34495e;
+        padding-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+
+</html>
